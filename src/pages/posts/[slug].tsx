@@ -51,8 +51,8 @@ export const getServerSideProps: GetServerSideProps = async ({req, params}) => {
         content: RichText.asHtml(response.data.content),
         updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
             day: '2-digit',
-                month: 'long',
-                year: 'numeric',
+            month: 'long',
+            year: 'numeric',
         })
     };
 
