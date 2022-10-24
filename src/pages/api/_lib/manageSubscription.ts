@@ -46,7 +46,7 @@ if (createAction) {
         "ref",
         q.Get(
           q.Match(
-            q.Index('subscription.id'),
+            q.Index('subscription_by_id'),
             subscriptionId,
         )
       )
