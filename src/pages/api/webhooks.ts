@@ -1,3 +1,15 @@
+"import/no-anonymous-default-export"; ["error", {
+    "allowArray": false,
+    "allowArrowFunction": false,
+    "allowAnonymousClass": false,
+    "allowAnonymousFunction": false,
+    "allowCallExpression": true, // The true value here is for backward compatibility
+    "allowLiteral": false,
+    "allowObject": false
+  }]
+
+
+
 import { NextApiRequest, NextApiResponse } from "next"
 import { Readable } from 'stream'
 import Stripe from "stripe";
@@ -17,7 +29,7 @@ return Buffer.concat(chunks);
 
 export const config = {
     api: {
-        budyPerser: false
+        budyParser: false
     }
 }
 
@@ -30,7 +42,7 @@ const relevantEvents = new Set([
 ])
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-   if(req.method === "POST"){
+   if(req.method === 'POST'){
     const buf = await buffer(req)
     const secret = req.headers['stripe-signature']
    
@@ -42,7 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(400).send(`Webhook Error: ${err.message}` );
     }
 
-    const {type} = event;
+    const { type } = event;
     
     if(!relevantEvents.has(type)){
        try {
