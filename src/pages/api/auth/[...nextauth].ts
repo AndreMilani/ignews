@@ -10,15 +10,15 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+     
     }),
     // ...add more providers here
   ],
 
    callbacks: {
 
-    async session(session) {
+    async session({session}) {
     try{
-
       const userActiveSubscription = await fauna.query(
         q.Get(
           q.Intersection([
@@ -52,8 +52,7 @@ export const authOptions = {
         activeSubscription: null,
       }
     }
-
-    },
+ },
  
     async signIn({ user, account, profile}) {
       const { email } = user
